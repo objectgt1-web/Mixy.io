@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#09070f">
-  <title>MIXY.IO - Discover VR GAMES</title>
+  <meta name="description" content="Discover and publish independent Android games on MIXY.IO.">
+  <title>MIXY.IO - Discover Android Games</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,6 +17,7 @@
       <a class="active" href="#discover">Discover</a>
       <a href="#categories">Categories</a>
       <a href="#about">About</a>
+      <a href="developer.html">Developers</a>
     </nav>
 
     <div class="nav-actions">
@@ -28,12 +30,12 @@
     <section class="hero">
       <div class="hero-content">
         <div class="eyebrow"><span class="live-dot"></span> THE HOME OF ANDROID GAMING</div>
-        <h1>Discover your next<br> <span>favorite game.</span></h1>
+        <h1>Discover your next<br><span>favorite game.</span></h1>
         <p>Explore indie Android games, discover new creators, and share your own creations with the world.</p>
 
         <div class="hero-actions">
           <a href="#discover" class="primary-btn">Explore games <span>→</span></a>
-          <button class="secondary-btn" onclick="openAuth('signup')">Become a creator</button>
+          <a href="developer.html" class="secondary-btn">Become a creator</a>
         </div>
 
         <div class="hero-stats">
@@ -63,6 +65,7 @@
           <h2>Discover games<span>.</span></h2>
           <p>Find something new to play.</p>
         </div>
+
         <div class="search-box">
           <span>⌕</span>
           <input id="searchInput" type="search" placeholder="Search games..." autocomplete="off">
@@ -79,6 +82,7 @@
       </div>
 
       <div class="game-grid" id="gameGrid"></div>
+
       <div class="empty-state" id="emptyState" hidden>
         <h3>No games found</h3>
         <p>Try another search or category.</p>
@@ -91,13 +95,13 @@
         <h2>Your game deserves<br><span>to be discovered.</span></h2>
         <p>Join MIXY.IO and share your Android games with players everywhere.</p>
       </div>
-      <button class="primary-btn" onclick="openAuth('signup')">Start publishing →</button>
+      <a href="developer.html" class="primary-btn">Start publishing →</a>
     </section>
 
     <section class="about section" id="about">
       <div class="eyebrow">ABOUT MIXY.IO</div>
       <h2>Made for creators.<br><span>Built for players.</span></h2>
-      <p>MIXY.IO is a platform concept for discovering and publishing independent Android games. Find new experiences and give creators a place to share their work.</p>
+      <p>MIXY.IO is a platform for discovering and publishing independent Android games. Find new experiences and give creators a place to share their work.</p>
     </section>
   </main>
 
@@ -119,17 +123,17 @@
         <label id="usernameLabel" hidden>Username</label>
         <input id="username" type="text" placeholder="Username" hidden>
 
-        <label>Email address</label>
+        <label for="email">Email address</label>
         <input id="email" type="email" placeholder="you@example.com" required>
 
-        <label>Password</label>
+        <label for="password">Password</label>
         <input id="password" type="password" placeholder="Your password" minlength="8" required>
 
         <button class="primary-btn full-btn" type="submit" id="authSubmit">Log in</button>
       </form>
 
       <p class="switch-auth" id="switchAuth"></p>
-      <p class="demo-note">Account creation will be enabled when Supabase is connected.</p>
+      <p class="demo-note">Create an account to publish your games.</p>
     </div>
   </div>
 
@@ -140,8 +144,7 @@
     </div>
   </div>
 
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-

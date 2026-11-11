@@ -1,1 +1,146 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09070f">
+  <title>MIXY.IO - Discover VR GAMES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#"><span>M</span>IXY.IO</a>
+
+    <nav>
+      <a class="active" href="#discover">Discover</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="login-btn" onclick="openAuth('login')">Log in</button>
+      <button class="signup-btn" onclick="openAuth('signup')">Sign up</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="live-dot"></span> THE HOME OF ANDROID GAMING</div>
+        <h1>Discover your next<br> <span>favorite game.</span></h1>
+        <p>Explore indie Android games, discover new creators, and share your own creations with the world.</p>
+
+        <div class="hero-actions">
+          <a href="#discover" class="primary-btn">Explore games <span>→</span></a>
+          <button class="secondary-btn" onclick="openAuth('signup')">Become a creator</button>
+        </div>
+
+        <div class="hero-stats">
+          <div><strong>APK</strong><small>Android games</small></div>
+          <div><strong>FREE</strong><small>Discover games</small></div>
+          <div><strong>YOU</strong><small>Support creators</small></div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="glow"></div>
+        <div class="art-card card-back"></div>
+        <div class="art-card card-front">
+          <div class="controller">🎮</div>
+          <span class="art-tag">DISCOVER SOMETHING NEW</span>
+          <h2>PLAY<br>YOUR WAY.</h2>
+          <p>Find your next adventure.</p>
+          <div class="art-bottom"><span>✦ MIXY.IO</span><span>ANDROID GAMING</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="discover section" id="discover">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">EXPLORE THE PLATFORM</div>
+          <h2>Discover games<span>.</span></h2>
+          <p>Find something new to play.</p>
+        </div>
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Search games..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="filters" id="categories">
+        <button class="filter active" data-category="All">All games</button>
+        <button class="filter" data-category="Action">Action</button>
+        <button class="filter" data-category="Adventure">Adventure</button>
+        <button class="filter" data-category="Horror">Horror</button>
+        <button class="filter" data-category="Multiplayer">Multiplayer</button>
+        <button class="filter" data-category="Other">Other</button>
+      </div>
+
+      <div class="game-grid" id="gameGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <h3>No games found</h3>
+        <p>Try another search or category.</p>
+      </div>
+    </section>
+
+    <section class="creator-banner">
+      <div>
+        <div class="eyebrow">MADE SOMETHING COOL?</div>
+        <h2>Your game deserves<br><span>to be discovered.</span></h2>
+        <p>Join MIXY.IO and share your Android games with players everywhere.</p>
+      </div>
+      <button class="primary-btn" onclick="openAuth('signup')">Start publishing →</button>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="eyebrow">ABOUT MIXY.IO</div>
+      <h2>Made for creators.<br><span>Built for players.</span></h2>
+      <p>MIXY.IO is a platform concept for discovering and publishing independent Android games. Find new experiences and give creators a place to share their work.</p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#"><span>M</span>IXY.IO</a>
+    <p>© 2026 MIXY.IO. Made for gamers.</p>
+    <a href="mailto:support@mixy.io">Contact</a>
+  </footer>
+
+  <div class="modal" id="authModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeAuth()" aria-label="Close">×</button>
+      <div class="logo modal-logo"><span>M</span>IXY.IO</div>
+      <div class="eyebrow">WELCOME TO MIXY.IO</div>
+      <h2 id="modalTitle">Welcome back.</h2>
+      <p id="modalDescription">Log in to your account.</p>
+
+      <form id="authForm">
+        <label id="usernameLabel" hidden>Username</label>
+        <input id="username" type="text" placeholder="Username" hidden>
+
+        <label>Email address</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Your password" minlength="8" required>
+
+        <button class="primary-btn full-btn" type="submit" id="authSubmit">Log in</button>
+      </form>
+
+      <p class="switch-auth" id="switchAuth"></p>
+      <p class="demo-note">Account creation will be enabled when Supabase is connected.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="gameModal" aria-hidden="true">
+    <div class="modal-card game-modal-card">
+      <button class="close-btn" onclick="closeGame()" aria-label="Close">×</button>
+      <div id="gameDetails"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

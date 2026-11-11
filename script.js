@@ -1,21 +1,13 @@
 
-// ======================================
-// MIXY.IO - MAIN WEBSITE
-// ======================================
-
-// SUPABASE CONFIGURATION
 const SUPABASE_URL = "https://vrbtneqfibpnkffknpjm.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable__1Rias6NsIkph8mRM6s00A_siu-LqGS";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable__1Rias6NsIkph8mRM6s00A_siuLqGS";
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
 
-// ======================================
 // DEMO GAMES
-// ======================================
-
 const games = [
   {
     name: "Shadow Runner",
@@ -67,10 +59,7 @@ const games = [
   }
 ];
 
-// ======================================
 // GAME DISCOVERY
-// ======================================
-
 let selectedCategory = "All";
 
 const gameGrid = document.getElementById("gameGrid");
@@ -88,7 +77,7 @@ function escapeHTML(value) {
 }
 
 function renderGames() {
-  const search = searchInput.value.toLowerCase();
+  const search = searchInput.value.toLowerCase().trim();
 
   const filtered = games.filter(game => {
     const categoryMatch =
@@ -104,8 +93,7 @@ function renderGames() {
   });
 
   gameGrid.innerHTML = filtered.map(game => `
-    <article class="game-card"
-      onclick="openGame(${games.indexOf(game)})">
+    <article class="game-card" onclick="openGame(${games.indexOf(game)})">
       <div class="game-cover" style="background:${game.color}">
         ${game.emoji}
         <span>${escapeHTML(game.category.toUpperCase())}</span>
@@ -135,12 +123,10 @@ document.querySelectorAll(".filter").forEach(button => {
 
 searchInput.addEventListener("input", renderGames);
 
-// ======================================
 // GAME DETAILS
-// ======================================
-
 function openGame(index) {
   const game = games[index];
+  if (!game) return;
 
   document.getElementById("gameDetails").innerHTML = `
     <div class="eyebrow">GAME PREVIEW</div>
@@ -149,22 +135,20 @@ function openGame(index) {
     <p>${escapeHTML(game.description)}</p>
     <p>Creator: ${escapeHTML(game.creator)}</p>
     <p style="margin-top:15px">
-      Sample listing. Real downloads will be available
-      when game publishing is connected.
+      Sample listing. Published games will appear here when connected.
     </p>
   `;
 
   document.getElementById("gameModal").classList.add("show");
+  document.getElementById("gameModal").setAttribute("aria-hidden", "false");
 }
 
 function closeGame() {
   document.getElementById("gameModal").classList.remove("show");
+  document.getElementById("gameModal").setAttribute("aria-hidden", "true");
 }
 
-// ======================================
 // AUTHENTICATION MODAL
-// ======================================
-
 function openAuth(type) {
   const signup = type === "signup";
 
@@ -186,17 +170,17 @@ function openAuth(type) {
     : 'New to MIXY.IO? <button type="button" onclick="openAuth(\'signup\')">Sign up</button>';
 
   document.getElementById("authForm").dataset.mode = type;
+
   document.getElementById("authModal").classList.add("show");
+  document.getElementById("authModal").setAttribute("aria-hidden", "false");
 }
 
 function closeAuth() {
   document.getElementById("authModal").classList.remove("show");
+  document.getElementById("authModal").setAttribute("aria-hidden", "true");
 }
 
-// ======================================
 // SIGNUP AND LOGIN
-// ======================================
-
 const authForm = document.getElementById("authForm");
 
 authForm.addEventListener("submit", async event => {
@@ -258,12 +242,8 @@ authForm.addEventListener("submit", async event => {
   }
 });
 
-// ======================================
 // ACCOUNT NAVIGATION
-// ======================================
-
 const navActions = document.querySelector(".nav-actions");
-
 const originalNav = navActions.innerHTML;
 
 function updateAccount(user) {
@@ -281,6 +261,12 @@ function updateAccount(user) {
   greeting.textContent =
     "@" + (user.user_metadata?.username || user.email);
 
+  const developerLink = document.createElement("a");
+  developerLink.href = "developer.html";
+  developerLink.textContent = "Developer Portal";
+  developerLink.style.cssText =
+    "color:#c5a0ff;font-size:13px;text-decoration:none;align-self:center";
+
   const logout = document.createElement("button");
   logout.className = "signup-btn";
   logout.textContent = "Log out";
@@ -293,10 +279,10 @@ function updateAccount(user) {
     }
   });
 
-  navActions.append(greeting, logout);
+  navActions.append(greeting, developerLink, logout);
 }
 
-// Restore existing session
+// RESTORE SESSION
 async function initializeAccount() {
   const { data, error } = await db.auth.getSession();
 
@@ -314,10 +300,7 @@ db.auth.onAuthStateChange((event, session) => {
 
 initializeAccount();
 
-// ======================================
 // MODAL CONTROLS
-// ======================================
-
 document.getElementById("authModal").addEventListener("click", event => {
   if (event.target.id === "authModal") closeAuth();
 });
@@ -333,5 +316,5 @@ document.addEventListener("keydown", event => {
   }
 });
 
-// START
+// START WEBSITE
 renderGames();

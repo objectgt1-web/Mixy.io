@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070f">
+  <title>Developer Portal | MIXY.IO</title>
+  <link rel="stylesheet" href="developer.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="index.html"><span>M</span>IXY.IO</a>
+    <nav>
+      <a href="index.html">Store</a>
+      <a class="active" href="developer.html">Developer Portal</a>
+    </nav>
+    <span id="accountLabel">Loading account...</span>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <p class="eyebrow">DEVELOPER CONSOLE</p>
+      <h2>App submission</h2>
+      <p class="muted">Complete each section to submit your Android game for review.</p>
+      <div class="step-list" id="stepList">
+        <div class="step active"><span>1</span>Name</div>
+        <div class="step"><span>2</span>Categorization</div>
+        <div class="step"><span>3</span>Specs</div>
+        <div class="step"><span>4</span>Details</div>
+        <div class="step"><span>5</span>Assets</div>
+        <div class="step"><span>6</span>Content rating</div>
+      </div>
+      <a class="back-link" href="index.html">← Back to MIXY.IO</a>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-heading">
+        <div>
+          <p class="eyebrow">NEW APPLICATION</p>
+          <h1 id="stepTitle">Name your app</h1>
+          <p class="muted" id="stepDescription">Start with the basic identity of your game.</p>
+        </div>
+        <span class="progress-label" id="progressLabel">STEP 1 OF 6</span>
+      </div>
+
+      <div class="progress-track"><div id="progressBar"></div></div>
+
+      <div id="loginNotice" class="notice" hidden>
+        <h3>Log in to continue</h3>
+        <p>You need a MIXY.IO account before submitting an app.</p>
+        <a href="index.html" class="primary-btn">Go to login</a>
+      </div>
+
+      <form id="submissionForm" hidden>
+        <!-- STEP 1 -->
+        <section class="form-step active" data-step="0">
+          <h2>App name</h2>
+          <p class="muted">Choose the name players will see in the store.</p>
+
+          <label for="appName">App name *</label>
+          <input id="appName" maxlength="60" required placeholder="My Android Game">
+
+          <label for="packageName">Package name *</label>
+          <input id="packageName" required maxlength="180"
+            pattern="^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$"
+            placeholder="com.example.mygame">
+          <small>Example: com.studio.game</small>
+
+          <label for="developerName">Developer or studio name *</label>
+          <input id="developerName" maxlength="60" required placeholder="Your studio name">
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="form-step" data-step="1">
+          <h2>Categorization</h2>
+          <p class="muted">Help players find your game.</p>
+
+          <label for="category">Primary category *</label>
+          <select id="category" required>
+            <option value="">Choose a category</option>
+            <option>Action</option>
+            <option>Adventure</option>
+            <option>Arcade</option>
+            <option>Casual</option>
+            <option>Horror</option>
+            <option>Multiplayer</option>
+            <option>Puzzle</option>
+            <option>Racing</option>
+            <option>Simulation</option>
+            <option>Strategy</option>
+            <option>Other</option>
+          </select>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="form-step" data-step="2">
+          <h2>App specifications</h2>
+          <p class="muted">Enter the technical information for this APK.</p>
+
+          <div class="two-col">
+            <div>
+              <label for="version">Version name *</label>
+              <input id="version" required maxlength="30" placeholder="1.0.0">
+            </div>
+            <div>
+              <label for="versionCode">Version code *</label>
+              <input id="versionCode" type="number" min="1" required value="1">
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div>
+              <label for="minAndroid">Minimum Android version *</label>
+              <input id="minAndroid" required placeholder="Example: Android 8.0">
+            </div>
+            <div>
+              <label for="targetSdk">Target SDK *</label>
+              <input id="targetSdk" type="number" min="1" required placeholder="Example: 35">
+            </div>
+          </div>
+
+          <label>Permissions used by your app *</label>
+          <p class="hint">Select every permission your app requests.</p>
+          <div class="check-grid" id="permissions">
+            <label><input type="checkbox" value="Internet"> Internet</label>
+            <label><input type="checkbox" value="Camera"> Camera</label>
+            <label><input type="checkbox" value="Microphone"> Microphone</label>
+            <label><input type="checkbox" value="Location"> Location</label>
+            <label><input type="checkbox" value="Notifications"> Notifications</label>
+            <label><input type="checkbox" value="Bluetooth"> Bluetooth</label>
+            <label><input type="checkbox" value="Storage or media"> Storage or media</label>
+            <label><input type="checkbox" value="Other"> Other</label>
+            <label><input type="checkbox" value="None"> No permissions</label>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="form-step" data-step="3">
+          <h2>App details</h2>
+          <p class="muted">Tell players and reviewers what your app does.</p>
+
+          <label for="shortDescription">Short description *</label>
+          <input id="shortDescription" maxlength="100" required placeholder="A quick description of your game">
+
+          <label for="description">Full description *</label>
+          <textarea id="description" rows="6" maxlength="5000" required placeholder="Explain the gameplay, features and what players can expect"></textarea>
+
+          <label for="supportEmail">Support email *</label>
+          <input id="supportEmail" type="email" required placeholder="support@example.com">
+
+          <label for="privacyUrl">Privacy policy URL *</label>
+          <input id="privacyUrl" type="url" required placeholder="https://example.com/privacy">
+
+          <label for="containsAds">Does your app contain ads? *</label>
+          <select id="containsAds" required>
+            <option value="">Choose an answer</option>
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+
+          <label for="dataSafety">How does your app handle user data? *</label>
+          <select id="dataSafety" required>
+            <option value="">Choose an answer</option>
+            <option value="No data collected">No user data collected</option>
+            <option value="Data collected">Collects user data</option>
+            <option value="Data shared">Shares user data with third parties</option>
+            <option value="Not sure">Not sure</option>
+          </select>
+
+          <label for="testingInstructions">Testing instructions</label>
+          <textarea id="testingInstructions" rows="3" placeholder="Explain how reviewers can access important features"></textarea>
+
+          <label for="knownIssues">Known issues</label>
+          <textarea id="knownIssues" rows="3" placeholder="List known bugs or write None"></textarea>
+
+          <label for="releaseNotes">Release notes *</label>
+          <textarea id="releaseNotes" rows="3" required placeholder="What is new in this version?"></textarea>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="form-step" data-step="4">
+          <h2>App assets</h2>
+          <p class="muted">Upload the files used for your store listing.</p>
+
+          <label for="apkFile">Android APK file *</label>
+          <input id="apkFile" type="file" accept=".apk,application/vnd.android.package-archive" required>
+          <small>Upload an APK you own or are authorized to publish.</small>
+
+          <label for="iconFile">App icon *</label>
+          <input id="iconFile" type="file" accept="image/png,image/jpeg,image/webp" required>
+          <small>PNG, JPG or WebP.</small>
+
+          <label for="featureGraphic">Feature graphic</label>
+          <input id="featureGraphic" type="file" accept="image/png,image/jpeg,image/webp">
+
+          <label for="screenshots">Screenshots</label>
+          <input id="screenshots" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+          <small>You can select multiple screenshots.</small>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="form-step" data-step="5">
+          <h2>Content rating</h2>
+          <p class="muted">Tell us who the app is suitable for and what it contains.</p>
+
+          <label for="targetAudience">Target audience *</label>
+          <select id="targetAudience" required>
+            <option value="">Choose an audience</option>
+            <option>Everyone</option>
+            <option>Teenagers</option>
+            <option>Adults</option>
+          </select>
+
+          <label for="contentRating">Your suggested content rating *</label>
+          <select id="contentRating" required>
+            <option value="">Choose a rating</option>
+            <option>Everyone</option>
+            <option>Everyone 10+</option>
+            <option>Teen</option>
+            <option>Mature 17+</option>
+          </select>
+
+          <label>Content included in your app</label>
+          <div class="check-grid" id="contentDescriptors">
+            <label><input type="checkbox" value="Mild violence"> Mild violence</label>
+            <label><input type="checkbox" value="Strong violence"> Strong violence</label>
+            <label><input type="checkbox" value="Scary content"> Scary content</label>
+            <label><input type="checkbox" value="Language"> Language</label>
+            <label><input type="checkbox" value="User interaction"> User interaction</label>
+            <label><input type="checkbox" value="In-app purchases"> In-app purchases</label>
+            <label><input type="checkbox" value="Gambling references"> Gambling references</label>
+            <label><input type="checkbox" value="None"> None of these</label>
+          </div>
+
+          <label class="confirm">
+            <input id="accuracyConfirm" type="checkbox" required>
+            I confirm that the information is accurate and I have the right to submit this app.
+          </label>
+          <label class="confirm">
+            <input id="safetyConfirm" type="checkbox" required>
+            I understand that MIXY.IO reviews submissions and may reject apps that are unsafe, misleading or violate its rules.
+          </label>
+        </section>
+
+        <div class="form-error" id="formError" role="alert"></div>
+
+        <div class="form-actions">
+          <button type="button" class="secondary-btn" id="backBtn" disabled>Back</button>
+          <button type="button" class="primary-btn" id="nextBtn">Continue</button>
+          <button type="submit" class="primary-btn" id="submitBtn" hidden>Submit for review</button>
+        </div>
+      </form>
+
+      <div id="successNotice" class="notice success" hidden>
+        <h2>Submission received</h2>
+        <p>Your app has been sent to MIXY.IO for review.</p>
+        <a href="index.html" class="primary-btn">Back to store</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="developer.js"></script>
+</body>
+</html>
